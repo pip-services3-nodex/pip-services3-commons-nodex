@@ -1,0 +1,46 @@
+{
+    "name": "pip-services3-commons-nodex",
+    "version": "1.0.0",
+    "author": "Conceptual Vision Consulting LLC",
+    "description": "Portable abstractions and patterns for Pip.Services in Node.js / ES2017",
+    "contributors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        }
+    ],
+    "main": "./obj/src/index.js",
+    "typings": "./obj/src/index.d.ts",
+    "keywords": [
+        "pip.services",
+        "microservice",
+        "commons",
+        "library"
+    ],
+    "noAnalyze": true,
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:pip-services3-node/pip-services3-commons-nodex.git"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "private": false,
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "test": "mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
+        "retest": "tsc && mocha -t 10000 -R spec -u tdd --recursive ./obj/test"
+    },
+    "dependencies": {
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.0.0",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "*",
+        "chai": "^4.3.4",
+        "mocha": "^8.3.2"
+    }
+}
