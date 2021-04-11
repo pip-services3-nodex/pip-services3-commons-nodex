@@ -44,22 +44,24 @@ class Command {
      *
      * @param name      the command name.
      * @param schema    the schema to validate command arguments.
-     * @param func      the function to be executed by this command.
+     * @param action      the function to be executed by this command.
      */
-    constructor(name, schema, func) {
+    constructor(name, schema, action) {
         if (name == null) {
             throw new Error("Name cannot be null");
         }
-        if (func == null) {
-            throw new Error("Function cannot be null");
+        if (action == null) {
+            throw new Error("Action cannot be null");
         }
         this._name = name;
         this._schema = schema;
-        if (typeof func !== "function")
-            this._function = func.execute;
-        else
-            this._function = func;
-        if (typeof this._function !== "function") {
+        if (typeof action !== "function") {
+            this._action = action.execute;
+        }
+        else {
+            this._action = action;
+        }
+        if (typeof this._action !== "function") {
             throw new Error("Function doesn't have function type");
         }
     }
@@ -86,7 +88,7 @@ class Command {
                 this._schema.validateAndThrowException(correlationId, args);
             }
             try {
-                return yield this._function(correlationId, args);
+                return yield this._action(correlationId, args);
             }
             catch (ex) {
                 throw new InvocationException_1.InvocationException(correlationId, "EXEC_FAILED", "Execution " + this.getName() + " failed: " + ex).withDetails("command", this.getName()).wrap(ex);

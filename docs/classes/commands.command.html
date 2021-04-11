@@ -143,13 +143,13 @@ result = <span class="hljs-keyword">await</span> command.execute(
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, schema<span class="tsd-signature-symbol">: </span><a href="validate.schema.html" class="tsd-signature-type">Schema</a>, func<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="commands.command.html" class="tsd-signature-type">Command</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, schema<span class="tsd-signature-symbol">: </span><a href="validate.schema.html" class="tsd-signature-type">Schema</a>, action<span class="tsd-signature-symbol">: </span><a href="../interfaces/run.iexecutable.html" class="tsd-signature-type">IExecutable</a><span class="tsd-signature-symbol"> | </span><a href="../modules/commands.html#commandaction" class="tsd-signature-type">CommandAction</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="commands.command.html" class="tsd-signature-type">Command</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in commands/Command.ts:38</li>
+									<li>Defined in commands/Command.ts:47</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -176,7 +176,7 @@ result = <span class="hljs-keyword">await</span> command.execute(
 									</div>
 								</li>
 								<li>
-									<h5>func: <span class="tsd-signature-type">any</span></h5>
+									<h5>action: <a href="../interfaces/run.iexecutable.html" class="tsd-signature-type">IExecutable</a><span class="tsd-signature-symbol"> | </span><a href="../modules/commands.html#commandaction" class="tsd-signature-type">CommandAction</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>the function to be executed by this command.</p>
@@ -202,7 +202,7 @@ result = <span class="hljs-keyword">await</span> command.execute(
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/commands.icommand.html">ICommand</a>.<a href="../interfaces/commands.icommand.html#execute">execute</a></p>
 								<ul>
-									<li>Defined in commands/Command.ts:86</li>
+									<li>Defined in commands/Command.ts:96</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,7 +247,7 @@ result = <span class="hljs-keyword">await</span> command.execute(
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/commands.icommand.html">ICommand</a>.<a href="../interfaces/commands.icommand.html#getname">getName</a></p>
 								<ul>
-									<li>Defined in commands/Command.ts:72</li>
+									<li>Defined in commands/Command.ts:82</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,7 +271,7 @@ result = <span class="hljs-keyword">await</span> command.execute(
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/commands.icommand.html">ICommand</a>.<a href="../interfaces/commands.icommand.html#validate">validate</a></p>
 								<ul>
-									<li>Defined in commands/Command.ts:111</li>
+									<li>Defined in commands/Command.ts:121</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,6 +390,9 @@ result = <span class="hljs-keyword">await</span> command.execute(
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/commands.ieventlistener.html" class="tsd-kind-icon">IEvent<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/commands.html#commandaction" class="tsd-kind-icon">Command<wbr>Action</a>
 					</li>
 				</ul>
 			</nav>

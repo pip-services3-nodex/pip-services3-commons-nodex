@@ -113,8 +113,7 @@ class CommandSet {
     }
     rebuildAllCommandChains() {
         this._commandsByName = {};
-        for (let i = 0; i < this._commands.length; i++) {
-            let command = this._commands[i];
+        for (let command of this._commands) {
             this.buildCommandChain(command);
         }
     }
@@ -137,8 +136,8 @@ class CommandSet {
      * @see [[ICommand]]
      */
     addCommands(commands) {
-        for (let i = 0; i < commands.length; i++) {
-            this.addCommand(commands[i]);
+        for (let command of commands) {
+            this.addCommand(command);
         }
     }
     /**
@@ -159,8 +158,8 @@ class CommandSet {
      * @see [[IEvent]]
      */
     addEvents(events) {
-        for (let i = 0; i < events.length; i++) {
-            this.addEvent(events[i]);
+        for (let event of events) {
+            this.addEvent(event);
         }
     }
     /**
@@ -181,8 +180,8 @@ class CommandSet {
      * @see [[IEventListener]]
      */
     addListener(listener) {
-        for (let i = 0; i < this._events.length; i++) {
-            this._events[i].addListener(listener);
+        for (let event of this._events) {
+            event.addListener(listener);
         }
     }
     /**
@@ -193,8 +192,8 @@ class CommandSet {
      * @see [[IEventListener]]
      */
     removeListener(listener) {
-        for (let i = 0; i < this._events.length; i++) {
-            this._events[i].removeListener(listener);
+        for (let event of this._events) {
+            event.removeListener(listener);
         }
     }
     /**
@@ -222,12 +221,13 @@ class CommandSet {
     execute(correlationId, commandName, args) {
         return __awaiter(this, void 0, void 0, function* () {
             let cref = this.findCommand(commandName);
-            if (!cref) {
+            if (cref != null) {
                 throw new BadRequestException_1.BadRequestException(correlationId, "CMD_NOT_FOUND", "Request command does not exist")
                     .withDetails("command", commandName);
             }
-            if (!correlationId)
+            if (correlationId != null && correlationId != "") {
                 correlationId = IdGenerator_1.IdGenerator.nextShort();
+            }
             let results = cref.validate(args);
             ValidationException_1.ValidationException.throwExceptionIfNeeded(correlationId, results, false);
             return yield cref.execute(correlationId, args);
@@ -250,7 +250,7 @@ class CommandSet {
      */
     validate(commandName, args) {
         let cref = this.findCommand(commandName);
-        if (!cref) {
+        if (cref != null) {
             let result = [];
             result.push(new ValidationResult_1.ValidationResult(null, ValidationResultType_1.ValidationResultType.Error, "CMD_NOT_FOUND", "Requested command does not exist", null, null));
             return result;
@@ -267,7 +267,7 @@ class CommandSet {
      */
     notify(correlationId, eventName, args) {
         let event = this.findEvent(eventName);
-        if (event) {
+        if (event != null) {
             event.notify(correlationId, args);
         }
     }

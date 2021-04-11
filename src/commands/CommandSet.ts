@@ -117,9 +117,7 @@ export class CommandSet {
 
     private rebuildAllCommandChains(): void {
         this._commandsByName = {};
-
-        for (let i = 0; i < this._commands.length; i++) {
-            let command: ICommand = this._commands[i];
+        for (let command of this._commands) {
             this.buildCommandChain(command);
         }
     }
@@ -144,8 +142,8 @@ export class CommandSet {
      * @see [[ICommand]]
      */
     public addCommands(commands: ICommand[]): void {
-        for (let i = 0; i < commands.length; i++) {
-            this.addCommand(commands[i]);
+        for (let command of commands) {
+            this.addCommand(command);
         }
     }
 
@@ -168,8 +166,8 @@ export class CommandSet {
      * @see [[IEvent]]
      */
     public addEvents(events: IEvent[]): void {
-        for (let i = 0; i < events.length; i++) {
-            this.addEvent(events[i]);
+        for (let event of events) {
+            this.addEvent(event);
         }
     }
 
@@ -192,8 +190,8 @@ export class CommandSet {
      * @see [[IEventListener]]
      */
     public addListener(listener: IEventListener): void {
-        for (let i = 0; i < this._events.length; i++) {
-            this._events[i].addListener(listener);
+        for (let event of this._events) {
+            event.addListener(listener);
         }
     }
 
@@ -205,8 +203,8 @@ export class CommandSet {
      * @see [[IEventListener]]
      */
     public removeListener(listener: IEventListener): void {
-        for (let i = 0; i < this._events.length; i++) {
-            this._events[i].removeListener(listener);
+        for (let event of this._events) {
+            event.removeListener(listener);
         }
     }
 
@@ -236,7 +234,7 @@ export class CommandSet {
     public async execute(correlationId: string, commandName: string, args: Parameters): Promise<any> {
         let cref = this.findCommand(commandName);
 
-        if (!cref) {
+        if (cref != null) {
             throw new BadRequestException(
                 correlationId,
                 "CMD_NOT_FOUND",
@@ -245,8 +243,9 @@ export class CommandSet {
             .withDetails("command", commandName);
         }
 
-        if (!correlationId)
+        if (correlationId != null && correlationId != "") {
             correlationId = IdGenerator.nextShort();
+        }
 
         let results = cref.validate(args);
         ValidationException.throwExceptionIfNeeded(correlationId, results, false);
@@ -272,7 +271,7 @@ export class CommandSet {
     public validate(commandName: string, args: Parameters): ValidationResult[] {
         let cref = this.findCommand(commandName);
 
-        if (!cref) {
+        if (cref != null) {
             let result: ValidationResult[] = [];
             result.push(new ValidationResult(
                 null, 
@@ -299,7 +298,7 @@ export class CommandSet {
      */
     public notify(correlationId: string, eventName: string, args: Parameters): void {
         let event = this.findEvent(eventName);
-        if (event) {
+        if (event != null) {
             event.notify(correlationId, args);
         }
     }

@@ -4,6 +4,15 @@ import { InvocationException } from '../errors/InvocationException';
 import { Schema } from '../validate/Schema';
 import { Parameters } from '../run/Parameters';
 import { ValidationResult } from '../validate/ValidationResult';
+import { IExecutable } from '../run/IExecutable';
+
+/**
+ * Command action function.
+ * @param correlationId (optional) transaction id to trace execution through call chain.
+ * @param args          the parameters (arguments) to pass to this command for execution.
+ * @returns             the execution result
+ */
+type CommandAction = (correlationId: string, args: Parameters) => Promise<any>;
 
 /**
  * Concrete implementation of [[ICommand ICommand]] interface. Command allows to call a method
@@ -35,32 +44,33 @@ import { ValidationResult } from '../validate/ValidationResult';
 export class Command implements ICommand {
     private _name: string;
     private readonly _schema: Schema;
-    private readonly _function: (correlationId: string, args: Parameters) => Promise<any>;
+    private readonly _action: CommandAction;
 
     /**
      * Creates a new command object and assigns it's parameters.
      * 
      * @param name      the command name.
      * @param schema    the schema to validate command arguments.
-     * @param func      the function to be executed by this command.
+     * @param action      the function to be executed by this command.
      */
-    public constructor(name: string, schema: Schema, func: any) {
+    public constructor(name: string, schema: Schema, action: IExecutable | CommandAction) {
         if (name == null) {
             throw new Error("Name cannot be null");
         }
-        if (func == null) {
-            throw new Error("Function cannot be null");
+        if (action == null) {
+            throw new Error("Action cannot be null");
         }
 
         this._name = name;
         this._schema = schema;
 
-        if (typeof func !== "function")
-            this._function = func.execute;
-        else
-            this._function = func;
+        if (typeof action !== "function") {
+            this._action = action.execute;
+        } else {
+            this._action = action;
+        }
 
-        if (typeof this._function !== "function") {
+        if (typeof this._action !== "function") {
             throw new Error("Function doesn't have function type");
         }
     }
@@ -89,7 +99,7 @@ export class Command implements ICommand {
         }
 
         try {
-            return await this._function(correlationId, args);
+            return await this._action(correlationId, args);
         } catch (ex) {
             throw new InvocationException(
                 correlationId,

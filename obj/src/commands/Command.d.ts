@@ -3,6 +3,14 @@ import { ICommand } from './ICommand';
 import { Schema } from '../validate/Schema';
 import { Parameters } from '../run/Parameters';
 import { ValidationResult } from '../validate/ValidationResult';
+import { IExecutable } from '../run/IExecutable';
+/**
+ * Command action function.
+ * @param correlationId (optional) transaction id to trace execution through call chain.
+ * @param args          the parameters (arguments) to pass to this command for execution.
+ * @returns             the execution result
+ */
+declare type CommandAction = (correlationId: string, args: Parameters) => Promise<any>;
 /**
  * Concrete implementation of [[ICommand ICommand]] interface. Command allows to call a method
  * or function using Command pattern.
@@ -33,15 +41,15 @@ import { ValidationResult } from '../validate/ValidationResult';
 export declare class Command implements ICommand {
     private _name;
     private readonly _schema;
-    private readonly _function;
+    private readonly _action;
     /**
      * Creates a new command object and assigns it's parameters.
      *
      * @param name      the command name.
      * @param schema    the schema to validate command arguments.
-     * @param func      the function to be executed by this command.
+     * @param action      the function to be executed by this command.
      */
-    constructor(name: string, schema: Schema, func: any);
+    constructor(name: string, schema: Schema, action: IExecutable | CommandAction);
     /**
      * Gets the command name.
      * @returns the name of this command.
@@ -69,3 +77,4 @@ export declare class Command implements ICommand {
      */
     validate(args: Parameters): ValidationResult[];
 }
+export {};
