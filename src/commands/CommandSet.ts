@@ -271,7 +271,7 @@ export class CommandSet {
     public validate(commandName: string, args: Parameters): ValidationResult[] {
         let cref = this.findCommand(commandName);
 
-        if (cref != null) {
+        if (cref == null) {
             let result: ValidationResult[] = [];
             result.push(new ValidationResult(
                 null, 
