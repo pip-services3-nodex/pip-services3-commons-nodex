@@ -11,5 +11,10 @@ suite('MethodReflector', () => {
         let result = MethodReflector_1.MethodReflector.invokeMethod(obj, "PUBLICMETHOD", 1, 2);
         assert.equal(3, result);
     });
+    test('Has Methods', () => {
+        let obj = new TestClass_1.TestClass();
+        let result = MethodReflector_1.MethodReflector.hasMethod(obj, "publicMethod");
+        assert.isTrue(result);
+    });
 });
 //# sourceMappingURL=MethodReflector.test.js.map

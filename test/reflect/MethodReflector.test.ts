@@ -14,4 +14,11 @@ suite('MethodReflector', ()=> {
        assert.equal(3, result);
    });
 
+    test('Has Methods', () => {
+        let obj = new TestClass();
+
+        let result = MethodReflector.hasMethod(obj, "publicMethod");
+        assert.isTrue(result);
+    });
+
 });

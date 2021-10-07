@@ -46,11 +46,15 @@ class MethodReflector {
             throw new Error("Method name cannot be null");
         }
         name = name.toLowerCase();
-        for (let method in obj) {
-            let methodValue = obj[method];
-            if (MethodReflector.matchMethod(method, methodValue, name)) {
-                return true;
+        while (obj != null && Object.getPrototypeOf(obj) != null) {
+            let properties = Object.getOwnPropertyNames(obj);
+            for (let method of properties) {
+                let methodValue = obj[method];
+                if (MethodReflector.matchMethod(method, methodValue, name)) {
+                    return true;
+                }
             }
+            obj = Object.getPrototypeOf(obj);
         }
         return false;
     }

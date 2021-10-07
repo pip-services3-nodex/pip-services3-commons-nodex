@@ -250,7 +250,7 @@ class CommandSet {
      */
     validate(commandName, args) {
         let cref = this.findCommand(commandName);
-        if (cref != null) {
+        if (cref == null) {
             let result = [];
             result.push(new ValidationResult_1.ValidationResult(null, ValidationResultType_1.ValidationResultType.Error, "CMD_NOT_FOUND", "Requested command does not exist", null, null));
             return result;
