@@ -6,7 +6,7 @@ suite('IntegerConverter', ()=> {
 
     test('To Integer', () => {
         assert.equal(123, IntegerConverter.toInteger(123));
-        assert.equal(124, IntegerConverter.toInteger(123.456));
+        assert.equal(123, IntegerConverter.toInteger(123.456));
         assert.equal(123, IntegerConverter.toInteger('123'));
         assert.equal(123, IntegerConverter.toInteger(new Date(123)));
         

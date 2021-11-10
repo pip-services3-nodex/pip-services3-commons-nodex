@@ -6,7 +6,7 @@ suite('LongConverter', ()=> {
 
     test('To Long', () => {
         assert.equal(123, LongConverter.toLong(123));
-        assert.equal(124, LongConverter.toLong(123.456));
+        assert.equal(123, LongConverter.toLong(123.456));
         assert.equal(123, LongConverter.toLong('123'));
         assert.equal(123, LongConverter.toLong(new Date(123)));
         

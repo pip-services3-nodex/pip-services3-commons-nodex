@@ -26,13 +26,13 @@ class LongConverter {
         if (value == null)
             return null;
         if (typeof value === "number")
-            return Math.ceil(value);
+            return Math.round(value);
         if (value instanceof Date)
             return value.getTime();
         if (typeof value === "boolean")
             return value ? 1 : 0;
         let result = parseFloat(value);
-        return isNaN(result) ? null : Math.ceil(result);
+        return isNaN(result) ? null : Math.round(result);
     }
     /**
      * Converts value into long or returns 0 when conversion is not possible.

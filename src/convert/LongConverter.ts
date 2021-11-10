@@ -23,12 +23,12 @@ export class LongConverter {
      */
     public static toNullableLong(value: any): number {
         if (value == null) return null;
-        if (typeof value === "number") return Math.ceil(value);
+        if (typeof value === "number") return Math.round(value);
         if (value instanceof Date) return value.getTime();
         if (typeof value === "boolean") return value ? 1 : 0;
 
         let result = parseFloat(value);
-        return isNaN(result) ? null : Math.ceil(result);
+        return isNaN(result) ? null : Math.round(result);
     }
 
     /**

@@ -5,7 +5,7 @@ const LongConverter_1 = require("../../src/convert/LongConverter");
 suite('LongConverter', () => {
     test('To Long', () => {
         assert.equal(123, LongConverter_1.LongConverter.toLong(123));
-        assert.equal(124, LongConverter_1.LongConverter.toLong(123.456));
+        assert.equal(123, LongConverter_1.LongConverter.toLong(123.456));
         assert.equal(123, LongConverter_1.LongConverter.toLong('123'));
         assert.equal(123, LongConverter_1.LongConverter.toLong(new Date(123)));
         assert.equal(123, LongConverter_1.LongConverter.toLongWithDefault(null, 123));

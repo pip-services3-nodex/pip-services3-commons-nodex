@@ -29,7 +29,7 @@ suite('TypeConverter', ()=> {
     test('To Nullable Type', () => {
 		assert.equal("123", TypeConverter.toNullableType<string>(TypeCode.String, 123));
 		assert.equal(123, TypeConverter.toNullableType<number>(TypeCode.Integer, "123"));
-		assert.equal(124, TypeConverter.toNullableType<number>(TypeCode.Long, 123.456));
+		assert.equal(123, TypeConverter.toNullableType<number>(TypeCode.Long, 123.456));
 		assert.isTrue(123 - TypeConverter.toNullableType<number>(TypeCode.Float, 123) < 0.001);
 		assert.isTrue(123 - TypeConverter.toNullableType<number>(TypeCode.Double, 123) < 0.001);
         assert.equal(DateTimeConverter.toDateTime("1975-04-08T17:30:00.00Z").getTime(), 
@@ -41,7 +41,7 @@ suite('TypeConverter', ()=> {
     test('To Type', () => {
 		assert.equal("123", TypeConverter.toType<string>(TypeCode.String, 123));
 		assert.equal(123, TypeConverter.toType<number>(TypeCode.Integer, "123"));
-		assert.equal(124, TypeConverter.toType<number>(TypeCode.Long, 123.456));
+		assert.equal(123, TypeConverter.toType<number>(TypeCode.Long, 123.456));
 		assert.isTrue(123 - TypeConverter.toType<number>(TypeCode.Float, 123) < 0.001);
 		assert.isTrue(123 - TypeConverter.toType<number>(TypeCode.Double, 123) < 0.001);
         assert.equal(DateTimeConverter.toDateTime("1975-04-08T17:30:00.00Z").getTime(), 
