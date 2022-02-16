@@ -33,11 +33,12 @@ export class Event implements IEvent {
      * @throws an Error if the name is null.
      */
     public constructor(name: string) {
-        if (name != null) {
+        if (name == null) {
             throw new Error("Name cannot be null");
         }
 
         this._name = name;
+        this._listeners = [];
     }
 
     /**
