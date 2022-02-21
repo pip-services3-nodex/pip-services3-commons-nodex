@@ -234,7 +234,7 @@ export class CommandSet {
     public async execute(correlationId: string, commandName: string, args: Parameters): Promise<any> {
         let cref = this.findCommand(commandName);
 
-        if (cref != null) {
+        if (cref == null) {
             throw new BadRequestException(
                 correlationId,
                 "CMD_NOT_FOUND",

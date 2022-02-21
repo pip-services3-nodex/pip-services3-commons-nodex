@@ -221,7 +221,7 @@ class CommandSet {
     execute(correlationId, commandName, args) {
         return __awaiter(this, void 0, void 0, function* () {
             let cref = this.findCommand(commandName);
-            if (cref != null) {
+            if (cref == null) {
                 throw new BadRequestException_1.BadRequestException(correlationId, "CMD_NOT_FOUND", "Request command does not exist")
                     .withDetails("command", commandName);
             }

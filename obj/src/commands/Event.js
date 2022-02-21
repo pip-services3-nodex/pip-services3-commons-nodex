@@ -28,10 +28,11 @@ class Event {
      * @throws an Error if the name is null.
      */
     constructor(name) {
-        if (name != null) {
+        if (name == null) {
             throw new Error("Name cannot be null");
         }
         this._name = name;
+        this._listeners = [];
     }
     /**
      * Gets the name of the event.
