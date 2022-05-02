@@ -57,7 +57,7 @@ class FixedRateTimer {
      * @see [[setDelay]]
      */
     constructor(taskOrCallback = null, interval = null, delay = null) {
-        if (typeof taskOrCallback === "object" && typeof taskOrCallback.notify === "function") {
+        if (taskOrCallback != null && typeof taskOrCallback === "object" && typeof taskOrCallback.notify === "function") {
             this.setTask(taskOrCallback);
         }
         else {

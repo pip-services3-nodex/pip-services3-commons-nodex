@@ -56,7 +56,7 @@ export class FixedRateTimer implements IClosable {
      * @see [[setDelay]]
      */
 	public constructor(taskOrCallback: any = null, interval: number = null, delay: number = null) {
-        if (typeof taskOrCallback === "object" && typeof taskOrCallback.notify === "function") {
+        if (taskOrCallback != null && typeof taskOrCallback === "object" && typeof taskOrCallback.notify === "function") {
             this.setTask(taskOrCallback);
         } else { 
 		    this.setCallback(taskOrCallback);
