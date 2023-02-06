@@ -1,5 +1,10 @@
 # <img src="https://uploads-ssl.webflow.com/5ea5d3315186cf5ec60c3ee4/5edf1c94ce4c859f2b188094_logo.svg" alt="Pip.Services Logo" width="200"> <br/> Portable Abstractions and Patterns for Node.js ChangeLog
 
+## <a name="1.0.4"></a> 1.0.4 (2023-02-07) 
+
+### Features
+* Updated dependencies
+
 ## <a name="1.0.3"></a> 1.0.3 (2022-02-21) 
 
 ### Bug fixes

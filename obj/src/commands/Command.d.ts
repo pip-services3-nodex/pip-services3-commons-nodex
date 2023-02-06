@@ -10,7 +10,7 @@ import { IExecutable } from '../run/IExecutable';
  * @param args          the parameters (arguments) to pass to this command for execution.
  * @returns             the execution result
  */
-declare type CommandAction = (correlationId: string, args: Parameters) => Promise<any>;
+type CommandAction = (correlationId: string, args: Parameters) => Promise<any>;
 /**
  * Concrete implementation of [[ICommand ICommand]] interface. Command allows to call a method
  * or function using Command pattern.
